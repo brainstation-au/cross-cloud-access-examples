@@ -15,8 +15,8 @@ locals {
 resource "docker_image" "this" {
   name = local.image_uri
   build {
-    context = local.docker_context
-    # cache_from = [local.latest_image_uri]
+    context    = local.docker_context
+    cache_from = [local.latest_image_uri]
     tag = [
       local.latest_image_uri,
       local.unique_image_uri,
@@ -41,6 +41,6 @@ resource "docker_registry_image" "latest" {
     content = local.docker_context_sha256
   }
   depends_on = [
-    docker_registry_image.latest
+    docker_registry_image.unique
   ]
 }

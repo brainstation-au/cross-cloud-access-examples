@@ -13,10 +13,10 @@ locals {
 }
 
 resource "docker_image" "this" {
-  name = local.latest_image_uri
+  name = local.image_uri
   build {
-    context    = local.docker_context
-    cache_from = [local.latest_image_uri]
+    context = local.docker_context
+    # cache_from = [local.latest_image_uri]
     tag = [
       local.latest_image_uri,
       local.unique_image_uri,

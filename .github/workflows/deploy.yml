@@ -23,6 +23,8 @@ jobs:
       TF_VAR_github_repository: ${{ github.repository }}
       TF_VAR_github_repository_owner: ${{ github.repository_owner }}
       TF_VAR_aws_region: ${{ vars.AWS_REGION }}
+      TF_VAR_google_project_id: ${{ vars.GOOGLE_PROJECT_ID }}
+      TF_VAR_gcp_identity_pool_for_aws: ${{ secrets.GOOGLE_WORKLOAD_IDENTITY_POOL_AWS }}
     defaults:
       run:
         shell: bash
@@ -44,6 +46,12 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
+
+      - name: GCP login
+        uses: google-github-actions/auth@v2
+        with:
+          service_account: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
+          workload_identity_provider: ${{ secrets.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
 
       - name: Install terraform
         uses: hashicorp/setup-terraform@v3

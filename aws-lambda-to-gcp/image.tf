@@ -33,6 +33,9 @@ resource "docker_registry_image" "unique" {
   depends_on = [
     docker_image.this
   ]
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "docker_registry_image" "latest" {
@@ -43,4 +46,7 @@ resource "docker_registry_image" "latest" {
   depends_on = [
     docker_registry_image.unique
   ]
+  lifecycle {
+    create_before_destroy = true
+  }
 }

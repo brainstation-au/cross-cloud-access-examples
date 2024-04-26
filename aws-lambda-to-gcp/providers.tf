@@ -14,6 +14,11 @@ terraform {
       source  = "kreuzwerker/docker"
       version = "~> 3.0.2"
     }
+
+    google = {
+      source  = "hashicorp/google"
+      version = "5.20.0"
+    }
   }
 
   backend "azurerm" {
@@ -40,4 +45,10 @@ provider "docker" {
     username = data.aws_ecr_authorization_token.this.user_name
     password = data.aws_ecr_authorization_token.this.password
   }
+}
+
+provider "google" {
+  project        = var.google_project_id
+  region         = "australia-southeast1"
+  default_labels = local.tags
 }

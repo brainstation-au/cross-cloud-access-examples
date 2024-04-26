@@ -12,3 +12,13 @@ variable "aws_region" {
   type        = string
   description = "The AWS region to deploy resources."
 }
+
+variable "google_project_id" {
+  type        = string
+  description = "The Google Cloud project ID."
+}
+
+variable "gcp_identity_pool_for_aws" {
+  type        = string
+  description = "The GCP identity pool for AWS."
+}

@@ -3,7 +3,7 @@ locals {
   resource_name     = "aws-lambda-to-gcp"
   aws_iam_role_path = "/github/brainstation-au/${local.repository}/"
   tags = {
-    terraform  = "true"
+    terraform   = "true"
     github_org  = var.github_repository_owner
     github_repo = local.repository
   }

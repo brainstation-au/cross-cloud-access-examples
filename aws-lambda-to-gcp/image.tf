@@ -18,6 +18,7 @@ resource "docker_image" "this" {
     context    = local.docker_context
     cache_from = [local.latest_image_uri]
     tag = [
+      local.image_uri,
       local.latest_image_uri,
       local.unique_image_uri,
     ]

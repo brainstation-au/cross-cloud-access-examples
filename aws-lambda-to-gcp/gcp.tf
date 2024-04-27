@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "this" {
-  name          = local.resource_name
+  name          = var.app_name
   location      = "AUSTRALIA-SOUTHEAST1"
   force_destroy = true
 

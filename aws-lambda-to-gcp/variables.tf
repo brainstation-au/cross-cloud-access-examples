@@ -22,3 +22,14 @@ variable "gcp_identity_pool_for_aws" {
   type        = string
   description = "The GCP identity pool for AWS."
 }
+
+variable "app_name" {
+  type        = string
+  description = "The name of the application."
+}
+
+variable "image_uri" {
+  type        = string
+  description = "ECR image URI."
+  default     = ""
+}

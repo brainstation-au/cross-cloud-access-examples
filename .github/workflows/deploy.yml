@@ -87,13 +87,13 @@ jobs:
         with:
           context: aws-lambda-to-gcp/lambda
           platforms: linux/arm64
-          cache-from: ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:latest-arm64
+          cache-from: ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:latest
           push: true
           tags: |
-            ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:${{ github.sha }}-arm64
-            ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:latest-arm64
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:${{ github.sha }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:latest
 
       - name: Apply terraform
         run: terraform apply -auto-approve
         env:
-          TF_VAR_image_uri: ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:${{ github.sha }}-arm64
+          TF_VAR_image_uri: ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:${{ github.sha }}

@@ -83,19 +83,19 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
-      - name: Create ECR Repository
-        run: terraform apply -auto-approve -target=aws_ecr_repository.this
+      # - name: Create ECR Repository
+      #   run: terraform apply -auto-approve -target=aws_ecr_repository.this
 
-      - name: Build and push image
-        uses: docker/build-push-action@v5
-        with:
-          context: aws-lambda-to-gcp/lambda
-          platforms: linux/amd64
-          cache-from: ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:latest
-          push: true
-          tags: |
-            ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:${{ github.sha }}
-            ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:latest
+      # - name: Build and push image
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: aws-lambda-to-gcp/lambda
+      #     platforms: linux/amd64
+      #     cache-from: ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:latest
+      #     push: true
+      #     tags: |
+      #       ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:${{ github.sha }}
+      #       ${{ steps.login-ecr.outputs.registry }}/${{ env.TF_VAR_app_name }}:latest
 
       - name: Apply terraform
         run: terraform apply -auto-approve

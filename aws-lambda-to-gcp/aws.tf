@@ -26,9 +26,9 @@ resource "aws_iam_role" "this" {
 resource "aws_lambda_function" "this" {
   function_name = var.app_name
   role          = aws_iam_role.this.arn
-  architectures = ["x86_64"]
+  architectures = ["arm64"]
   description   = "This is an example lambda function"
-  image_uri     = var.image_uri
+  image_uri     = docker_registry_image.unique.name
   environment {
     variables = {
       foo = "bar"

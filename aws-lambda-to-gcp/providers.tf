@@ -10,6 +10,11 @@ terraform {
       version = "~> 3.97.1"
     }
 
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 3.0.2"
+    }
+
     google = {
       source  = "hashicorp/google"
       version = "5.20.0"
@@ -31,6 +36,14 @@ provider "aws" {
   region = var.aws_region
   default_tags {
     tags = local.tags
+  }
+}
+
+provider "docker" {
+  registry_auth {
+    address  = data.aws_ecr_authorization_token.this.proxy_endpoint
+    username = data.aws_ecr_authorization_token.this.user_name
+    password = data.aws_ecr_authorization_token.this.password
   }
 }
 

@@ -26,7 +26,7 @@ resource "aws_iam_role" "this" {
 resource "aws_lambda_function" "this" {
   function_name = var.app_name
   role          = aws_iam_role.this.arn
-  architectures = ["arm64"]
+  architectures = ["x86_64"]
   description   = "This is an example lambda function"
   image_uri     = var.image_uri
   environment {

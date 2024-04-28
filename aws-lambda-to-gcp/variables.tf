@@ -18,18 +18,12 @@ variable "google_project_id" {
   description = "The Google Cloud project ID."
 }
 
-variable "gcp_identity_pool_for_aws" {
+variable "gcp_identity_pool" {
   type        = string
-  description = "The GCP identity pool for AWS."
+  description = "The Google Cloud identity pool name."
 }
 
-variable "app_name" {
+variable "gcp_identity_provider" {
   type        = string
-  description = "The name of the application."
-}
-
-variable "image_uri" {
-  type        = string
-  description = "ECR image URI."
-  default     = ""
+  description = "The Google Cloud identity provider name."
 }

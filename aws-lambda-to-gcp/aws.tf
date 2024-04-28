@@ -1,10 +1,10 @@
 data "aws_ecr_authorization_token" "this" {}
 resource "aws_ecr_repository" "this" {
-  name = var.app_name
+  name = local.app_name
 }
 
 resource "aws_iam_role" "this" {
-  name = "${var.app_name}-lambda"
+  name = local.app_name
   path = local.aws_iam_role_path
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -24,14 +24,16 @@ resource "aws_iam_role" "this" {
 }
 
 resource "aws_lambda_function" "this" {
-  function_name = var.app_name
+  function_name = local.app_name
   role          = aws_iam_role.this.arn
   architectures = ["arm64"]
   description   = "This is an example lambda function"
   image_uri     = docker_registry_image.unique.name
   environment {
     variables = {
-      foo = "bar"
+      GOOGLE_IDENTITY_PROVIDER = var.gcp_identity_provider
+      GOOGLE_PROJECT_ID        = var.google_project_id
+      GCS_BUCKET_NAME          = google_storage_bucket.this.name
     }
   }
   package_type = "Image"

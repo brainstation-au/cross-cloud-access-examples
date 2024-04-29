@@ -29,8 +29,15 @@ resource "aws_lambda_function" "this" {
   architectures = ["arm64"]
   description   = "This is an example lambda function"
   image_uri     = docker_registry_image.unique.name
-  package_type  = "Image"
-  timeout       = 60
+  environment {
+    variables = {
+      GOOGLE_IDENTITY_PROVIDER = var.gcp_identity_provider
+      GOOGLE_PROJECT_ID        = var.google_project_id
+      GCS_BUCKET_NAME          = google_storage_bucket.this.name
+    }
+  }
+  package_type = "Image"
+  timeout      = 60
 }
 
 resource "aws_cloudwatch_log_group" "example" {

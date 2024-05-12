@@ -47,13 +47,10 @@ def write_object(project_id: str, access_token: str, bucket_name: str, object_na
     blob = bucket.blob(object_name)
     blob.upload_from_string(data)
 
-def main() -> None:
+def handler(event, context) -> None:
     google_identity_provider = os.getenv("GOOGLE_IDENTITY_PROVIDER")
     access_token = get_access_token(google_identity_provider)
 
     google_project_id = os.getenv("GOOGLE_PROJECT_ID")
     bucket_name = os.getenv("GCS_BUCKET_NAME")
     write_object(google_project_id, access_token, bucket_name, "foo/bar/test.txt", "Hello, World!")
-
-def handler(event, context):
-    main()

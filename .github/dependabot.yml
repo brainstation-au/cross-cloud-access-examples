@@ -4,3 +4,7 @@ updates:
     directory: "aws-lambda-to-gcp"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "terraform"
+    directory: "gcp-functions-to-aws"
+    schedule:
+      interval: "weekly"

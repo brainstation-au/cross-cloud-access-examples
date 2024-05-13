@@ -13,12 +13,6 @@ resource "google_storage_bucket" "this" {
   public_access_prevention = "enforced"
 }
 
-resource "google_storage_bucket_iam_member" "this" {
-  bucket = google_storage_bucket.this.name
-  role   = "roles/storage.objectAdmin"
-  member = "serviceAccount:${google_service_account.this.email}"
-}
-
 data "archive_file" "this" {
   type        = "zip"
   output_path = "${path.module}/tmp/functions.zip"

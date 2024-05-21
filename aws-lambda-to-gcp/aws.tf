@@ -28,7 +28,7 @@ resource "aws_lambda_function" "this" {
   role          = aws_iam_role.this.arn
   architectures = ["arm64"]
   description   = "This is an example lambda function"
-  image_uri     = docker_registry_image.unique.name
+  image_uri     = "${local.image_name}@${docker_registry_image.this.sha256_digest}"
   environment {
     variables = {
       GOOGLE_IDENTITY_PROVIDER = var.gcp_identity_provider

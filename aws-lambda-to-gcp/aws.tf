@@ -1,4 +1,6 @@
 data "aws_ecr_authorization_token" "this" {}
+data "aws_caller_identity" "current" {}
+
 resource "aws_ecr_repository" "this" {
   name = local.app_name
 }

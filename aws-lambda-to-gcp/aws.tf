@@ -1,9 +1,4 @@
-data "aws_ecr_authorization_token" "this" {}
 data "aws_caller_identity" "current" {}
-
-resource "aws_ecr_repository" "this" {
-  name = local.app_name
-}
 
 resource "aws_iam_role" "this" {
   name = local.app_name
@@ -25,12 +20,21 @@ resource "aws_iam_role" "this" {
   ]
 }
 
+data "archive_file" "lambda" {
+  type        = "zip"
+  source_dir  = "${path.module}/lambda"
+  output_path = "${path.module}/lambda.zip"
+}
+
 resource "aws_lambda_function" "this" {
-  function_name = local.app_name
-  role          = aws_iam_role.this.arn
-  architectures = ["arm64"]
-  description   = "This is an example lambda function"
-  image_uri     = "${local.image_name}@${docker_registry_image.this.sha256_digest}"
+  function_name    = local.app_name
+  role             = aws_iam_role.this.arn
+  architectures    = ["arm64"]
+  description      = "Writing sample object to GCS bucket"
+  filename         = data.archive_file.lambda.output_path
+  source_code_hash = data.archive_file.lambda.output_base64sha256
+  handler          = "main.handler"
+  runtime          = "python3.12"
   environment {
     variables = {
       GOOGLE_IDENTITY_PROVIDER = var.gcp_identity_provider
@@ -38,8 +42,7 @@ resource "aws_lambda_function" "this" {
       GCS_BUCKET_NAME          = google_storage_bucket.this.name
     }
   }
-  package_type = "Image"
-  timeout      = 60
+  timeout = 60
 }
 
 resource "aws_cloudwatch_log_group" "example" {

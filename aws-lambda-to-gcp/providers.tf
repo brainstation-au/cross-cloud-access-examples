@@ -1,18 +1,18 @@
 terraform {
   required_providers {
+    archive = {
+      source  = "hashicorp/archive"
+      version = "2.4.2"
+    }
+
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.47.0"
+      version = "5.52.0"
     }
 
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.101.0"
-    }
-
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 3.0.2"
+      version = "3.106.1"
     }
 
     google = {
@@ -32,18 +32,12 @@ terraform {
   required_version = ">= 1.7.4"
 }
 
+provider "archive" {}
+
 provider "aws" {
   region = var.aws_region
   default_tags {
     tags = local.tags
-  }
-}
-
-provider "docker" {
-  registry_auth {
-    address  = data.aws_ecr_authorization_token.this.proxy_endpoint
-    username = data.aws_ecr_authorization_token.this.user_name
-    password = data.aws_ecr_authorization_token.this.password
   }
 }
 

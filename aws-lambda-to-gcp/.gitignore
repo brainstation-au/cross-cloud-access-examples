@@ -1,0 +1,4 @@
+lambda.zip
+lambda/*
+!lambda/main.py
+!lambda/requirements.txt

@@ -1,6 +1,7 @@
 FROM --platform=amd64 python:3-slim
 
-RUN pip install --no-cache-dir google-cloud-storage requests azure-identity
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 WORKDIR /opt/app
 

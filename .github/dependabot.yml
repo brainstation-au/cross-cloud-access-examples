@@ -3,16 +3,24 @@ updates:
   - package-ecosystem: "terraform"
     directory: "aws-lambda-to-gcp"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
   - package-ecosystem: "pip"
     directory: "aws-lambda-to-gcp/lambda"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
   - package-ecosystem: "terraform"
     directory: "gcp-functions-to-aws"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+  - package-ecosystem: "pip"
+    directory: "gcp-functions-to-aws/functions"
+    schedule:
+      interval: "monthly"
   - package-ecosystem: "terraform"
     directory: "azure-job-to-gcp"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+  - package-ecosystem: "pip"
+    directory: "azure-job-to-gcp/job"
+    schedule:
+      interval: "monthly"

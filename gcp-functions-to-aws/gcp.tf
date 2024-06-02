@@ -15,7 +15,7 @@ resource "google_storage_bucket" "this" {
 
 data "archive_file" "this" {
   type        = "zip"
-  output_path = "${path.module}/tmp/functions.zip"
+  output_path = "${path.module}/functions.zip"
   source_dir  = "${path.module}/functions"
 }
 

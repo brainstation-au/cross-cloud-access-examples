@@ -2,22 +2,17 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.104.0"
+      version = "3.106.1"
     }
 
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0.2"
+      version = "3.0.2"
     }
 
     google = {
       source  = "hashicorp/google"
-      version = "5.26.0"
-    }
-
-    local = {
-      source  = "hashicorp/local"
-      version = "2.5.1"
+      version = "5.31.1"
     }
   }
 
@@ -29,7 +24,7 @@ terraform {
     subscription_id      = "a41dafcb-2936-42b5-8796-d761f0cbe41e"
   }
 
-  required_version = ">= 1.7.4"
+  required_version = "1.8.4"
 }
 
 provider "azurerm" {
@@ -50,5 +45,3 @@ provider "google" {
   region         = var.google_cloud_region
   default_labels = local.tags
 }
-
-provider "local" {}

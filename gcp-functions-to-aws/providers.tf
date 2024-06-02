@@ -7,17 +7,17 @@ terraform {
 
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.43.0"
+      version = "5.52.0"
     }
 
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.97.1"
+      version = "3.106.1"
     }
 
     google = {
       source  = "hashicorp/google"
-      version = "5.22.0"
+      version = "5.31.1"
     }
   }
 
@@ -29,7 +29,7 @@ terraform {
     subscription_id      = "a41dafcb-2936-42b5-8796-d761f0cbe41e"
   }
 
-  required_version = ">= 1.7.4"
+  required_version = "1.8.4"
 }
 
 provider "archive" {}

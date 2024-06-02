@@ -4,7 +4,15 @@ updates:
     directory: "aws-lambda-to-gcp"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "aws-lambda-to-gcp/lambda"
+    schedule:
+      interval: "weekly"
   - package-ecosystem: "terraform"
     directory: "gcp-functions-to-aws"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "terraform"
+    directory: "azure-job-to-gcp"
     schedule:
       interval: "weekly"

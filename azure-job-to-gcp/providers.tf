@@ -24,7 +24,7 @@ terraform {
     subscription_id      = "a41dafcb-2936-42b5-8796-d761f0cbe41e"
   }
 
-  required_version = "1.8.4"
+  required_version = "1.9.8"
 }
 
 provider "azurerm" {

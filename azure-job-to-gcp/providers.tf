@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.106.1"
+      version = "4.10.0"
     }
 
     docker = {
@@ -12,7 +12,7 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = "5.31.1"
+      version = "6.12.0"
     }
   }
 

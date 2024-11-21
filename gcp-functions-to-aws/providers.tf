@@ -2,22 +2,22 @@ terraform {
   required_providers {
     archive = {
       source  = "hashicorp/archive"
-      version = "2.4.2"
+      version = "2.6.0"
     }
 
     aws = {
       source  = "hashicorp/aws"
-      version = "5.52.0"
+      version = "5.76.0"
     }
 
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.106.1"
+      version = "4.10.0"
     }
 
     google = {
       source  = "hashicorp/google"
-      version = "5.31.1"
+      version = "6.12.0"
     }
   }
 

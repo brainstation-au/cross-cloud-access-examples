@@ -17,9 +17,13 @@ resource "aws_iam_role" "this" {
   })
 }
 
+data "aws_iam_policy" "lambda_basic_execution" {
+  name = "AWSLambdaBasicExecutionRole"
+}
+
 resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
   role       = aws_iam_role.this.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  policy_arn = data.aws_iam_policy.lambda_basic_execution.arn
 }
 
 data "archive_file" "lambda" {

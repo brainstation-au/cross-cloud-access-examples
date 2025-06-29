@@ -2,22 +2,22 @@ terraform {
   required_providers {
     archive = {
       source  = "hashicorp/archive"
-      version = "2.6.0"
+      version = "2.7.1"
     }
 
     aws = {
       source  = "hashicorp/aws"
-      version = "5.76.0"
+      version = "6.0.0"
     }
 
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "4.10.0"
+      version = "4.34.0"
     }
 
     google = {
       source  = "hashicorp/google"
-      version = "6.12.0"
+      version = "6.41.0"
     }
   }
 
@@ -29,7 +29,7 @@ terraform {
     subscription_id      = "a41dafcb-2936-42b5-8796-d761f0cbe41e"
   }
 
-  required_version = "1.9.8"
+  required_version = "1.12.2"
 }
 
 provider "archive" {}

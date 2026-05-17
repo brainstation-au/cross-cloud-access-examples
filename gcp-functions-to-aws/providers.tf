@@ -17,9 +17,8 @@ terraform {
   }
 
   backend "gcs" {
-    bucket                      = "brainstation-terraform"
-    prefix                      = "cross-cloud-access-examples/gcp-functions-to-aws/terraform-state"
-    impersonate_service_account = "project-admin@cross-cloud-access-examples.iam.gserviceaccount.com"
+    bucket = "brainstation-terraform"
+    prefix = "cross-cloud-access-examples/gcp-functions-to-aws/terraform-state"
   }
 
   required_version = "~> 1.12"
@@ -35,8 +34,7 @@ provider "aws" {
 }
 
 provider "google" {
-  project                     = var.google_project_id
-  region                      = var.google_cloud_region
-  impersonate_service_account = "project-admin@cross-cloud-access-examples.iam.gserviceaccount.com"
-  default_labels              = local.tags
+  project        = var.google_project_id
+  region         = var.google_cloud_region
+  default_labels = local.tags
 }

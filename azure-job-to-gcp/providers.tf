@@ -2,29 +2,27 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "4.34.0"
+      version = ">= 4.34"
     }
 
     docker = {
       source  = "kreuzwerker/docker"
-      version = "3.0.2"
+      version = ">= 3.0"
     }
 
     google = {
       source  = "hashicorp/google"
-      version = "6.41.0"
+      version = ">= 6.41"
     }
   }
 
-  backend "azurerm" {
-    resource_group_name  = "terraform-backend"
-    storage_account_name = "terradata"
-    container_name       = "cross-cloud-access-examples"
-    key                  = "azure-job-to-gcp.tfstate"
-    subscription_id      = "a41dafcb-2936-42b5-8796-d761f0cbe41e"
+  backend "gcs" {
+    bucket                      = "brainstation-terraform"
+    prefix                      = "cross-cloud-access-examples/azure-job-to-gcp/terraform-state"
+    impersonate_service_account = "project-admin@cross-cloud-access-examples.iam.gserviceaccount.com"
   }
 
-  required_version = "1.12.2"
+  required_version = "~> 1.12"
 }
 
 provider "azurerm" {
@@ -41,7 +39,8 @@ provider "docker" {
 }
 
 provider "google" {
-  project        = var.google_project_id
-  region         = var.google_cloud_region
-  default_labels = local.tags
+  project                     = var.google_project_id
+  region                      = var.google_cloud_region
+  impersonate_service_account = "project-admin@cross-cloud-access-examples.iam.gserviceaccount.com"
+  default_labels              = local.tags
 }
